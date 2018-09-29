@@ -10,6 +10,11 @@
           </li>
         </ul>
       </div>
+      <span class="btn-floating btn-large halfway-fab pink">
+        <router-link :to="{name: 'EditSmoothie', params: {smoothie_slug: smoothie.slug}}">
+          <i class="material-icons">edit</i>
+        </router-link>
+      </span>
     </div>
   </div>
 </template>
@@ -27,8 +32,7 @@ export default {
   methods: {
     deleteSmoothie(id) {
       // delete doc from firestore
-      db
-        .collection("smoothies")
+      db.collection("smoothies")
         .doc(id)
         .delete()
         .then(() => {
@@ -40,8 +44,7 @@ export default {
   },
   created() {
     //fetch data from firestore
-    db
-      .collection("smoothies")
+    db.collection("smoothies")
       .get()
       .then(snapshot => {
         snapshot.forEach(doc => {
